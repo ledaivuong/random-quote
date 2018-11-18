@@ -31,7 +31,7 @@ class App extends Component {
                 textColor: '#B63232'
             },
             data: {
-                content: "",
+                content: 'Click on "Get quote" button to get the words',
                 author: ""
             }
         };
