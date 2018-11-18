@@ -2,38 +2,6 @@ import React, {Component} from 'react';
 import './App.css';
 import Background from './components/Background/Background';
 import $ from 'jquery';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
-function loadQuote() {
-    $('#quote-content, #quote-author').fadeOut();
-    $('button').css("color", "white");
-    $.ajax({
-        dataType: "jsonp",
-        jsonp: "jsonp",
-        cache: false,
-        url: "https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?",
-        success: setQuote
-    });
-
-    function setQuote(data) {
-        let color = getRandomTheme();
-        $('.container-fluid, button').animate({
-            backgroundColor: color.background
-        }, 1000);
-
-        $('.panel').animate({
-            backgroundColor: color.panel,
-            color: color.text
-        }, 1000);
-
-        let content = data.quoteText.trim();
-        let author = data.quoteAuthor ? data.quoteAuthor.trim() : "Unknown";
-
-        $('#quote-content').text('"' + content + '"');
-        $('#quote-author').text("- " + author + " -");
-        $('#quote-author, #quote-content').fadeIn(1000);
-    }
-}
 
 function getRandomTheme() {
     const colors = [
@@ -52,11 +20,6 @@ function Theme(themeColor, panelColor, textColor) {
     this.panelColor = panelColor;
     this.textColor = textColor;
 }
-
-// $(function init() {
-//     loadQuote();
-//     $('.btn-quote').on('click', loadQuote);
-// });
 
 class App extends Component {
     constructor(props) {
